@@ -7,10 +7,10 @@
 
 class Solution:
     def searchBST(self, root: TreeNode, val: int) -> TreeNode:
-
-        if not root:
-            return None
+        """
+        Search a BST for a value and return it if found
+        """
+        if not root: return
         while root:
-            if root.val == val:
-                return root
+            if root.val == val: return root
             root = root.left if val < root.val else root.right

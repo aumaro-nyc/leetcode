@@ -7,15 +7,16 @@
 
 class Solution:
     def countNodes(self, root: TreeNode) -> int:
-        q = []
+        """
+        Performs BFS to count total number of nodes in a binary tree
+        """
+        queue = []
         count = 0
-        q.append(root)
-        while q:
-            c = q.pop(0)
-            if not c:
-                continue
+        queue.append(root)
+        while queue:
+            current = queue.pop(0)
+            if not current: continue
             count += 1
-            q.append(c.left)
-            q.append(c.right)
-
+            queue.append(c.left)
+            queue.append(c.right)
         return count

@@ -13,16 +13,16 @@ class Solution:
         self.lca = None
 
         def recurse_tree(node, p, q):
-            if not node:
-                return False
-
+            """
+            Recursive function to check left and right subtrees for p and q,
+            returning a boolean
+            """
+            if not node: return False
             left = recurse_tree(node.left,p,q)
             right = recurse_tree(node.right,p,q)
             mid = node.val == p.val or node.val == q.val
-
             if left + right + mid >= 2:
                 self.lca = node
-
             return left or right or mid
 
         recurse_tree(root,p,q)

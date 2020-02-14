@@ -9,26 +9,27 @@ class Node:
 """
 class Solution:
     def connect(self, root: 'Node') -> 'Node':
-        if not root:
-            return None
-
-        l = []
-        w = []
-        l.append(root)
-        while l:
-            c = l.pop(0)
-            w.append(c)
-            while l:
-                tmp = l.pop(0)
-                c.next = tmp
-                w.append(tmp)
-                c = tmp
-            while w:
-                tmp = w.pop(0)
-                if not tmp:
-                    continue
-                if tmp.left is not None:
-                    l.append(tmp.left)
-                if tmp.right is not None:
-                    l.append(tmp.right)
+        """
+        Populate next pointers to point at the next right hand node
+        in the tree.
+        """
+        if not root: return
+        level = []
+        waiting = []
+        level.append(root)
+        while level:
+            current = level.pop(0)
+            waiting.append(current)
+            while level:
+                temp = level.pop(0)
+                current.next = temp
+                waiting.append(temp)
+                current = temp
+            while waiting:
+                temp = waiting.pop(0)
+                if not temp: continue
+                if temp.left is not None:
+                    level.append(temp.left)
+                if temp.right is not None:
+                    level.append(temp.right)
         return root

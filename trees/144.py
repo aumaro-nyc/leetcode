@@ -16,8 +16,7 @@ class Solution:
 
         while stack:
             node = stack.pop()
-            if not node:
-                continue
+            if not node: continue
             preorder.append(node.val)
             stack.append(node.right)
             stack.append(node.left)

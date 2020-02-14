@@ -6,14 +6,13 @@
 #         self.right = None
 
 class Solution:
-
     def invertTree(self, root: TreeNode) -> TreeNode:
-        if not root:
-            return None
-
+        """
+        Recursively invert a binary tree
+        """
+        if not root: return
         right = self.invertTree(root.right)
         left = self.invertTree(root.left)
         root.right = left
         root.left = right
-
         return root

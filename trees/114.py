@@ -10,25 +10,23 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        if not root:
-            return None
+        if not root: return
         self.queue = []
 
-        def helper(root):
+        def preorder(root):
             """
             Performs pre-order traversal and appends nodes to Queue
             """
-            if not root:
-                return None
+            if not root: return
             self.queue.append(root)
-            helper(root.left)
-            helper(root.right)
-        
-        helper(root)
-        c = self.queue.pop(0)
-        c.left = None
+            preorder(root.left)
+            preorder(root.right)
+
+        preorder(root)
+        current = self.queue.pop(0)
+        current.left = None
         while self.queue:
-            tmp = self.queue.pop(0)
-            tmp.left = None
-            c.right = tmp
-            c = tmp
+            temp = self.queue.pop(0)
+            temp.left = None
+            current.right = tmp
+            current = tmp

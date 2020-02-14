@@ -7,32 +7,30 @@
 
 class Solution:
     def rightSideView(self, root: TreeNode) -> List[int]:
-        if not root:
-            return []
-
-        l,w,result = [],[],[]
-
+        """
+        Returns a list containing the 'right side view' of a Binary
+        tree.
+        """
+        if not root: return []
+        level,waiting,result = [],[],[]
         result.append(root.val)
-        l.append(root.right)
-        l.append(root.left)
-
-        while l:
+        level.append(root.right)
+        level.append(root.left)
+        
+        while level:
             first = None
-
-            while l:
-                tmp = l.pop(0)
-                if not tmp:
-                    continue
+            while level:
+                temp = level.pop(0)
+                if not temp: continue
                 if not first:
-                    first = tmp
+                    first = temp
                     result.append(first.val)
-                w.append(tmp)
-
-            while w:
-                tmp = w.pop(0)
-                if tmp.right is not None:
-                    l.append(tmp.right)
-                if tmp.left is not None:
-                    l.append(tmp.left)
+                waiting.append(temp)
+            while waiting:
+                temp = waiting.pop(0)
+                if temp.right is not None:
+                    level.append(temp.right)
+                if temp.left is not None:
+                    level.append(temp.left)
 
         return result

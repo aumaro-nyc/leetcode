@@ -7,10 +7,17 @@
 
 class Solution:
     def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
-        if not root:
-            return TreeNode(val)
+        """
+        Function to insert a new value into a BST. Returns the root of the
+        tree original tree.
+        """
+        if not root: return TreeNode(val)
 
         def helper(root, val):
+            """
+            Recursive function to find insertion position for value. Inserts
+            new node and returns.
+            """
             if val < root.val:
                 if not root.left:
                     root.left = TreeNode(val)

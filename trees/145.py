@@ -16,8 +16,7 @@ class Solution:
 
         while stack:
             node = stack.pop()
-            if not node:
-                continue
+            if not node: continue
             right = node.right
             left = node.left
             if not right and not left:

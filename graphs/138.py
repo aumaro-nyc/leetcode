@@ -14,12 +14,16 @@ class Solution:
         each node also contains a pointer to a random
         node also in the linked list.
         """
-
         if not head:
             return None
         node_map = {None:None}
 
         def dfs(node):
+            """
+            Depth First Search utility function to populate node_map
+            with copies of original nodes and populate random pointer
+            for each node
+            """
             if node not in node_map:
                 node_map[node] = Node(node.val)
             if node.next is None:
