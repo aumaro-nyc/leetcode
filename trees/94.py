@@ -8,18 +8,21 @@
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
         """
-        Recrusive in-order traversal of a binary tree
+        Iterative in-order traversal of a Binary Tree
         """
-        if root is None:
-            return []
-        inorder_traversal = []
-        self.dfs_util(root, inorder_traversal)
-        return inorder_traversal
+        if not root: return []
+        result = []
+        stack = []
+        stack.append(root)
 
-
-    def dfs_util(self, root, traversal_list):
-        if root.left is not None:
-            self.dfs_util(root.left, traversal_list)
-        traversal_list.append(root.val)
-        if root.right is not None:
-            self.dfs_util(root.right, traversal_list)
+        while stack:
+            current = stack.pop()
+            if isinstance(current, TreeNode):
+                if current.right is not None:
+                    stack.append(current.right)
+                stack.append(current.val)
+                if current.left is not None:
+                    stack.append(current.left)
+            else:
+                result.append(current)
+        return result
