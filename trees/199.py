@@ -7,30 +7,34 @@
 
 class Solution:
     def rightSideView(self, root: TreeNode) -> List[int]:
-        """
-        Returns a list containing the 'right side view' of a Binary
-        tree.
-        """
+        # Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+from collections import deque
+
+class Solution:
+    def rightSideView(self, root: TreeNode) -> List[int]:
         if not root: return []
-        level,waiting,result = [],[],[]
-        result.append(root.val)
-        level.append(root.right)
-        level.append(root.left)
-        
+        result = []
+        level = deque()
+        waiting = deque()
+        level.append(root)
+
         while level:
-            first = None
+            added = False
             while level:
-                temp = level.pop(0)
-                if not temp: continue
-                if not first:
-                    first = temp
-                    result.append(first.val)
+                temp = level.popleft()
+                if not added:
+                    result.append(temp.val)
+                    added = True
                 waiting.append(temp)
             while waiting:
-                temp = waiting.pop(0)
+                temp = waiting.popleft()
                 if temp.right is not None:
                     level.append(temp.right)
                 if temp.left is not None:
                     level.append(temp.left)
-
         return result
