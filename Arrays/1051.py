@@ -5,7 +5,7 @@ class Solution:
     Return the minimum number of students that must move in order for all students to be
     standing in non-decreasing order of height.
 
-    Time: 93% (28ms)
+    Time: 93% (28ms) O(nlogn)
     """
     def heightChecker(self, heights: List[int]) -> int:
         sorted_heights = sorted(heights)
