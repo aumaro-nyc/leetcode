@@ -22,3 +22,15 @@ class Solution:
                 stack.append(current.children[i])
                 i -= 1
         return result
+
+class Solution:
+    def postorder(self, root: 'Node') -> List[int]:
+        if not root: return
+        result = []
+        stack = [root]
+        while stack:
+            current = stack.pop()
+            result.append(current.val)
+            stack.extend(current.children)
+
+        return result[::-1]
